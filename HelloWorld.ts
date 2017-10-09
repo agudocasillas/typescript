@@ -31,6 +31,7 @@ function multiply(arg1: number, ...args: number[]): number{
   return total;
 }
 
+// Divides the numbers
 function divide(arg1: number,  arg2: number): number{
   return arg1 / arg2;
 }
