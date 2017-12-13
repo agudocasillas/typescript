@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(255, 204, 0);
+}
+.inbox {
+  border: 1px solid #ececec;
+  margin: 0 auto;
+  width: 300px;
+  border-radius: 3px;
+  background-color: #FFF;
+  box-shadow: 7px 8px rgb(175, 137, 0);
+}
+
+.hide {
+  display: none;
+}
+
+.item {
+  border-bottom: 1px solid #ececec;
+}
+
+.item input[type="checkbox"] {
+  padding: 15px;
+  display: inline-block;
+}
+
+.item label,
+.item input {
+  border-left: 1px solid #ececec;
+  padding: 15px;
+  display: inline-block;
+}
+
+.item input[type="text"] {
+  padding: 8px;
+  margin: 7px;
+}
+
+.item input[type='checkbox']:checked + label {
+  text-decoration: line-through;
+}
