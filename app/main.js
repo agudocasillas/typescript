@@ -16,7 +16,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById('logIn').style.display = 'none';
     document.getElementById('logOut').style.display = 'block';
     document.getElementsByClassName('inbox')[0].style.display = 'block';
-    document.getElementById('userName').innerHTML = name;
+    document.getElementsByClassName('userName')[0].innerHTML = `${name}'s`;
+    
 
     var database = firebase.database();
 
@@ -35,6 +36,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   } else {
     console.log("NO HAY USER");
+    document.getElementsByClassName('inbox')[0].style.display = 'none';
     // No user is signed in.
   }
 });
@@ -62,25 +64,66 @@ function enableBtn(input) {
 
 document.querySelector("input[type='text'").addEventListener("keyup", (function(){enableBtn(this)}));
 
-function createNew() {
+function createNew(addBtn) {
+  var newItem = document.querySelectorAll("div.item").length + 1;
+  var div = createDiv(["item", "new"])
+  div.appendChild( createCheckbox("item-", newItem) );
+  var input = createText("New Item");
+  div.appendChild( input );
+  div.appendChild( createBtn() );
+  document.querySelector("div.inbox").appendChild(div);
+  convertInput(addBtn, newItem);
+}
+
+function convertInput(addBtn, newItem) {
+  addBtn.classList.add("hide");
+  var input = addBtn.parentNode.querySelector("input[type='text']");
+  input.classList.add("hide");
+  var newLabel = createLabel("name-", newItem);
+  newLabel.innerHTML = input.value;
+  addBtn.parentNode.insertBefore( newLabel, addBtn );
+}
+
+function createDiv(classes) {
   var div = document.createElement("div");
-  div.classList.add("item", "new");
+  for(var i = 0; i < classes.length; i++) {
+    div.classList.add(classes[i]);
+  }
+  return div;
+}
+
+function createCheckbox (name, id) {
   var input = document.createElement("input");
   input.type = "checkbox";
-  input.name = "item-";
-  div.appendChild(input);
-  input = document.createElement("input");
+  input.name = name + id;
+  return input;
+}
+
+function createLabel(name, id){
+  var label = document.createElement("label");
+  label.setAttribute("for", name + id);
+  label.addEventListener("click", (function () { editItem(this) }));
+  return label;
+}
+
+function createText( place) {
+  var input = document.createElement("input");
   input.type = "text";
-  input.placeholder = "New Item";
+  input.placeholder = place;
   input.addEventListener("keyup", (function () { enableBtn(this) }));
-  div.appendChild(input);
+  return input;
+}
+
+function createBtn() {
   var btn = document.createElement("button");
   btn.classList.add("addNew");
   btn.innerHTML = "Add";
-  btn.setAttribute("onclick","createNew()");
-  btn.setAttribute("disabled","disabled");
-  div.appendChild(btn);
-  document.querySelector("div.inbox").appendChild(div);
+  btn.setAttribute("onclick", "createNew(this)");
+  btn.setAttribute("disabled", "disabled");
+  return btn;
+}
 
-  //document.querySelectorAll("button.addNew");
+function editItem(item) {
+  item.classList.add("hide");
+  item.parentNode.querySelector("input[type='text']").classList.remove("hide");
 }

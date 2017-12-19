@@ -52,9 +52,9 @@
       <script src=core.js></script>
     </head>
     <body>
-        <h1>Esta es mi lista de TO DO's</h1>
+        <h1><span class="userName"></span> to do's list</h1>
         <button id="logIn" onclick="document.getElementById('firebaseui-auth-container').style.display = 'block'">Log In</button>
-        <button id="logOut" onclick="logOut();" style="display: none;">Log Out</button>
+        <button id="logOut" onclick="logOut();" style="display: none;" class="btn btn-light">Log Out</button>
         <div id="firebaseui-auth-container" style="display: none;"></div>
         <div id="userName"></div>
 
@@ -66,7 +66,7 @@
           <div class="item new">
             <input name="item-2" type="checkbox">
             <input for="item-2" type="text" placeholder="New item">
-            <button class="addNew" onclick="createNew()" disabled>Add</button>
+            <button class="addNew" onclick="createNew(this)" disabled>Add</button>
           </div>
         </div>
 
@@ -75,4 +75,4 @@
     </body>
 
   </html>
-  
+ 

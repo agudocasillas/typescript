@@ -1,40 +1,56 @@
+@import url("https://getbootstrap.com/dist/css/bootstrap.min.css");
 body {
-  background-color: rgb(255, 204, 0);
+    background-color: rgb(255, 204, 0);
+    font-family: Arial;
 }
+
+h1 {
+    text-align: center;
+    max-width: 50%;
+    margin: 50px auto;
+}
+
 .inbox {
-  border: 1px solid #ececec;
-  margin: 0 auto;
-  width: 300px;
-  border-radius: 3px;
-  background-color: #FFF;
-  box-shadow: 7px 8px rgb(175, 137, 0);
+    border: 1px solid #ececec;
+    margin: 0 auto;
+    width: 300px;
+    border-radius: 3px;
+    background-color: #FFF;
+    box-shadow: 7px 8px rgb(175, 137, 0);
+}
+
+button#logOut {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    cursor: pointer;
 }
 
 .hide {
-  display: none;
+    display: none !important;
 }
 
 .item {
-  border-bottom: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
 }
 
 .item input[type="checkbox"] {
-  padding: 15px;
-  display: inline-block;
+    padding: 15px;
+    display: inline-block;
 }
 
 .item label,
 .item input {
-  border-left: 1px solid #ececec;
-  padding: 15px;
-  display: inline-block;
+    border-left: 1px solid #ececec;
+    padding: 15px;
+    display: inline-block;
 }
 
 .item input[type="text"] {
-  padding: 8px;
-  margin: 7px;
+    padding: 8px;
+    margin: 7px;
 }
 
-.item input[type='checkbox']:checked + label {
-  text-decoration: line-through;
+.item input[type='checkbox']:checked+label {
+    text-decoration: line-through;
 }
